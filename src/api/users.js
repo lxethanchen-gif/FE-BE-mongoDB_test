@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000'
+const BASE_URL = 'https://be-test-0utx.onrender.com'
 
 export const userApi = {
   getAll: async () => {
