@@ -6,10 +6,10 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    vueDevTools(),
-  ],
+  // 加上這行，讓打包後的資源能正確對應 GitHub Pages 的路徑
+  // 注意：前後都要有斜線，例如 '/my-website/'
+  base: '/你的儲存庫名稱/',
+  plugins: [vue(), vueDevTools()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
