@@ -47,10 +47,10 @@ const newUser = ref({ name: '', email: '' })
 
 const fetchUsers = async () => {
   loading.value = true
-  errorMsg.value = '' // ← 每次重新 fetch 都先清除錯誤
+  errorMsg.value = ''
   try {
     users.value = await userApi.getAll()
-    errorMsg.value = '' // ← 成功後也清除
+    errorMsg.value = ''
   } catch (err) {
     errorMsg.value = err.message
   } finally {
@@ -103,16 +103,18 @@ onMounted(fetchUsers)
 .home {
   max-width: 640px;
   margin: 40px auto;
-  padding: 0 20px;
+  padding: 0 16px;
 }
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 .header h1 {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
   color: #111827;
 }
@@ -124,6 +126,7 @@ onMounted(fetchUsers)
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
+  white-space: nowrap;
 }
 .add-btn:hover {
   background: #4338ca;
@@ -148,6 +151,8 @@ onMounted(fetchUsers)
   border-radius: 8px;
   font-size: 14px;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 .form-card input:focus {
   border-color: #4f46e5;
@@ -178,5 +183,22 @@ onMounted(fetchUsers)
 .error {
   color: #dc2626;
   font-size: 14px;
+}
+
+@media (max-width: 480px) {
+  .home {
+    margin: 20px auto;
+  }
+  .header h1 {
+    font-size: 20px;
+  }
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .add-btn {
+    width: 100%;
+    text-align: center;
+  }
 }
 </style>

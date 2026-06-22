@@ -1,6 +1,5 @@
 <template>
   <div class="user-card">
-    <!-- 顯示模式 -->
     <template v-if="!editing">
       <div class="user-avatar">{{ initials }}</div>
       <div class="user-info">
@@ -14,7 +13,6 @@
       </div>
     </template>
 
-    <!-- 編輯模式 -->
     <template v-else>
       <div class="edit-form">
         <input v-model="editData.name" placeholder="姓名" />
@@ -88,17 +86,24 @@ const confirmEdit = () => {
 }
 .user-info {
   flex: 1;
+  min-width: 0;
 }
 .user-info h3 {
   margin: 0 0 4px;
   font-size: 16px;
   font-weight: 600;
   color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .user-info p {
   margin: 0 0 4px;
   font-size: 14px;
   color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .user-date {
   font-size: 12px;
@@ -107,6 +112,7 @@ const confirmEdit = () => {
 .actions {
   display: flex;
   gap: 8px;
+  flex-shrink: 0;
 }
 .edit-btn {
   padding: 6px 14px;
@@ -178,5 +184,29 @@ const confirmEdit = () => {
 }
 .cancel-btn:hover {
   background: #e5e7eb;
+}
+
+@media (max-width: 480px) {
+  .user-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+  }
+  .actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .edit-form {
+    flex-direction: column;
+    width: 100%;
+  }
+  .edit-form input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .edit-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
 }
 </style>
